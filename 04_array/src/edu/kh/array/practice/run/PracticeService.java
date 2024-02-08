@@ -109,6 +109,16 @@ public class PracticeService {
 		System.out.println("총 합 : " + sum);
 	}
 	public void practice7() {
-		
-	}
+		System.out.print("주민등록번호(-포함) : ");
+		Scanner sc = new Scanner(System.in);
+		String num = sc.next();
+		char[] text = new char[num.length()];
+		for (int i =0; i < num.length();i++) {
+			text[i] = num.charAt(i);
+		}
+		for (int i = 0; i < 8; i++) {
+			System.out.print(text[i]);
+		}
+		System.out.print("******");
+}
 }
