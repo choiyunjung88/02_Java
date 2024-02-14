@@ -1,18 +1,16 @@
 package edu.kh.oop.basic;
 
-import java.util.Arrays;
-
-// 이름 계좌번호 잔액 비밀번호
-// 메서드 getter/setter deposit() withdraw()
-// deposit() : 전달받은 금액을 잔액에 누적한 후 현재 잔액을 콘솔에 출력
-// withdraw() : 비밀번호와 출금할 금액을 전달받아와, 조건에 맞으면 잔액에서 차감 후 현재 잔액 출력
-
+// 계좌 클래스
 public class Account {
-	private String name;
-	private String accountNumber;
-	private int balance;
-	private int password;
 	
+	// 속성(값)
+	private String name; // 이름
+	private String accountNumber; // 계좌번호
+	private long balance; // 잔액
+	private String password; // 비밀번호
+	
+
+	// 기능
 	public String getName() {
 		return name;
 	}
@@ -25,38 +23,68 @@ public class Account {
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	public int getBalance() {
+	public long getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(long balance) {
 		this.balance = balance;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-	public void deposit(int account) {
-		this.balance += account;
-		System.out.println(balance);
+	/*
+	 * 
+	- deposit(amount) : 전달받은 금액을 잔액에 누적한 후, 현재 잔액을 콘솔에 출력
+	 * */
+	
+	public void deposit(long amount) {
+		//전달받은 금액을 잔액에 누적한 후
+		balance += amount;
+		// 현재 잔액을 콘솔에 출력
+		System.out.println(name + "의 현재 잔액 : " + balance);
 	}
-	public void withdraw(int pw, int account) {
-		if (pw != this.password) {
-			System.out.println("비밀번호 불일치");
-		}else if (account > this.balance) {
-			System.out.println("잔액 부족");
-		}else {
-			this.balance -= account;
-			System.out.println(balance);
-			
+	
+	/*
+	 *
+	- withdraw(pw, amount) : 비밀번호와 출금할 금액을 전달받아와, 조건에 맞으면 잔액에서 차감 후 현재 잔액 출력
+	1) 비밀번호와 일치하지 않으면 "비밀번호 불일치" 출력
+	2) 출금할 금액이 잔액보다 크면 "잔액 부족" 출력
+	 * 
+	 * */
+	
+	public void withdraw(String pw, long amount) {
+		
+		if(!password.equals(pw)) { // 다를 경우
+			System.out.println("비밀 번호 불일치");
+			return; // 메서드 종료 -> 호출한 곳으로 돌아감
 		}
+		
+		// 출금할 금액이 잔액보다 큰 경우
+		if(amount > balance) {
+			System.out.println("잔액 부족");
+			return;
+		}
+		
+		
+		// 잔액을 출금할 금액 만큼 차감
+		balance -= amount;
+		// balance = balance - amount;
+		
+		System.out.printf("%s 계좌에서 %d원 출금\n", accountNumber, amount);
+		System.out.println(name + "의 현재 잔액 : " + balance);
+		
 	}
-	 public String getInfo(String name1, String name2) {
-		 String[] arr = new String[2];
-		 arr[0] = name1;
-		 arr[1] = name2;
-		 return Arrays.toString(arr);
-	 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
