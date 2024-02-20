@@ -1,7 +1,7 @@
 package edu.kh.collection.model.vo;
 
 public class Student {
-
+	
 	// 필드
 	private String name; // 이름
 	private int age; // 나이
@@ -9,9 +9,9 @@ public class Student {
 	private char gender; // 성별
 	private int score; // 점수
 	
-	public Student() {
-	}
+	public Student() {} // 기본생성자
 
+	// 매개변수생성자
 	public Student(String name, int age, String region, char gender, int score) {
 		super();
 		this.name = name;
@@ -61,13 +61,14 @@ public class Student {
 		this.score = score;
 	}
 
-	// toString 오버라이딩
-	// altshifts s enter
+	// toString() 오버라이딩
+	// alt + shift + s -> s (Generate toString...) -> 엔터
 	@Override
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", region=" + region + ", gender=" + gender + ", score="
 				+ score + "]";
 	}
+	
 	
 	
 	
