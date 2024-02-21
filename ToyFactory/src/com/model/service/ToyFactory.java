@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import com.model.dto.Toy;
 
-import edu.kh.collection.pack1.model.vo.Student;
 
 public class ToyFactory {
 	private Scanner sc = new Scanner(System.in);
