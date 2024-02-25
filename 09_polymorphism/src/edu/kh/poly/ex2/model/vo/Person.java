@@ -22,6 +22,12 @@ public class Person extends Animal{
 		super();
 		this.name = name;
 	}
+	
+
+	public Person(String type, String eatType, String name) {
+		super(type, eatType);
+		this.name = name;
+	}
 
 	@Override
 	public void eat() {
