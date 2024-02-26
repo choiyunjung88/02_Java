@@ -48,8 +48,8 @@ public class TodoListView {
 				switch(input) {
 				case 1 : todoListFullView(); break;
 				case 2 : //todoDetailView(); break;
-				case 3 : //todoAdd(); break;
-				case 4 : //todoComplete(); break;
+				case 3 : todoAdd(); break;
+				case 4 : todoComplete(); break;
 				case 5 : //todoUpdate(); break;
 				case 6 : //todoDelete(); break;
 				case 0 : System.out.println("@@ 프로그램 종료 @@");break;
@@ -133,6 +133,41 @@ public class TodoListView {
 		}
 	}
 	
+
+	
+	
+	
+	
+	
+	/**
+	 * 할 일 추가(제목, 상세 내용만 입력받음)
+	 */
+	public void todoAdd() {
+		System.out.println("세부 내용 작성 (입력 종료 시 !wq 작성 후 엔터");
+	
+		StringBuilder
+	
+	}
+	
+	
+	//할일 추가 서비스 호출 후 결과 반환 받기
+	// 성공 : 추가된 index, 실패 : -1
+	int index = service.todoAdd(title, sb.toString());
+	
+	
+	/**할 일 추가 서비스
+	 * @param title
+	 * @param content
+	 * @return
+	 */
+	public abstract int todoAdd(String title, String content);
+	
+	
+	@Override
+	public int todoAdd(String title,String content) {
+		// Todo 객체 생성
+		return 0;
+	}
 	
 	
 	
@@ -141,17 +176,96 @@ public class TodoListView {
 	
 	
 	
+	/**
+	 * 할일 완료 여부 변경
+	 * index 번호 입력 받기//                   
+	 */
+	public void todoComplete() {
+		return  
+	}
 	
 	
 	
+	public void todoComplete() throws IOException, Exception {
+		System.out.println("\n=============todo complete==============");
+		
+		
+		
+	}
 	
 	
 	
+	// 수정 코드 작성...
+	// 수정전 상세 내용 출력
 	
 	
+	public void todoUpdate() throws Exception{
+		System.out.println("==========================");
+		int index = Integer.parseInt(br.readLine());
+		String todoDetail = service.todoDetailView();
+		
+		System.out.println("@@@@@@@@@@@수정 전@@@@@@@@@@@@");
+		System.out.println(todoDetail);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		// 수정 서비스 호출 후 결과 반환 받기
+		boolean result = service.todoUpdate();
+		
+	}
+	
+	@Override
+	public boolean todoUpdate(int index, String title, String content) {
+		// 수정된 제목, 내용을 이용해서 Todo 객체 생성
+		Todo todo = new Todo(title, content, todoList.get(index).isComplete(), todoList.get(index).getRegDate());
+		// index 번째 요소의 complete, regDate 값을 얻어와 todo에 세팅
+		
+		//List.set(int index, E e) : 
+		//  index번째 요소를 매개변수 e로 바꾸고,
+		//  이전 요소를 반환 (없으면 null)
+		
+		if (todoList.set(index, todo) != null) { // 수정 성공
+			// 변경된 todo 저장
+			saveFile();
+			return true;
+		}
+		return false;
+	}
 	
 	
+
+	/**
+	 * 할 일 삭제
+	 * - 인덱스 번호를 입력받아서 일치하는 요소 삭제
+	 */
+	public void todoDelete() throws Exception{
+		System.out.println("==================Todo Delete================");
+		
+		System.out.print("삭제할 인덱스 번호 입력 : ");
+		int index = Integer.parseInt(br.readLine());
+		// 삭제 서비스 호출 후 결과 반환받기
+		// -> 제목 또는 null을 반환
+		String result = service.todoDelete(index);
+		
+		if(result == null) System.out.println("### 인덱스가 존재하지 않습니다 ###");
+		else    System.out.println("[%s]가 삭제되었습니다\n", result);
+		
+		//DAO메서드 호출 후 결과 반환 받기
+		// -> 삭제된 Todo 또는 null을 반환받기
+		Todo todo = dao.todoDelete(index);
+		
+		
+		
+	}
 	
+	@Override
+	public Todo todoDelete(int index) throws Exception{
+		// index 범위 검사
+		if(index <0|| index >= todoList.size()) return null;
+		// todoList에서 index 번째 요소 삭제 후 파일 저장
+		Todo todo = todoList.remove(index);
+		saveFile(); // 제목 반환
+		return null;
+	}
 	
 	
 	
