@@ -1,0 +1,5 @@
+package edu.kh.attendance.model.dao;
+
+public class AttendanceDAOImpl implements AttendanceDAO {
+
+}

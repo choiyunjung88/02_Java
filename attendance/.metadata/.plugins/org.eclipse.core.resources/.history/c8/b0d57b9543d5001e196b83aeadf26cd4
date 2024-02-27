@@ -1,0 +1,73 @@
+package edu.kh.attendance.model.dao;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.kh.attendance.model.dto.Attendance;
+
+public class AttendanceDAOImpl implements AttendanceDAO {
+
+	private final String FILE_PATH = "/io_test/Attendance.dat";
+	private ObjectInputStream ois = null;
+	private ObjectOutputStream oos = null;
+	
+	private List<Attendance> attendanceList = null;
+	
+	public AttendanceDAOImpl() {
+		File file = new File(FILE_PATH);
+		if(file.exists()) {
+			try {
+				try {
+					ois = new ObjectInputStream(new FileInputStream(FILE_PATH));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					attendanceList = (ArrayList<Attendance>)ois.readObject();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}finally {
+				if(ois != null) ois.close();
+			}
+		}else {
+			File directory = new File("/io_test");
+			if (!directory.exists()) directory.mkdir();
+			
+			attendanceList = new ArrayList<Attendance>();
+			attendanceList.add(new Attendance("차은우", 23, 'M', 100, 'O'));
+			attendanceList.add(new Attendance("닝닝", 25, 'F', 50, 'O'));
+			attendanceList.add(new Attendance("황민현", 27, 'M', 70, 'X'));
+			
+			try {
+				try {
+					oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				oos.writeObject(attendanceList);
+			}finally {
+				oos.close();
+			}
+			System.out.println("*** Attendance.dat 파일 생성 완료 ***");
+		}
+	}
+
+	@Override
+	public List<Attendance> attendanceFullView() {
+		// TODO Auto-generated method stub
+		return attendanceList;
+	}
+	
+}

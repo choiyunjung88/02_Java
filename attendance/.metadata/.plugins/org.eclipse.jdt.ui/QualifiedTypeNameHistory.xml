@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.io.Serializable"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="edu.kh.attendance.model.service.AttendanceService"/>
+    <fullyQualifiedTypeName name="edu.kh.attendance.model.service.AttendanceServiceImpl"/>
+    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="edu.kh.attendance.view.AttendanceView"/>
+    <fullyQualifiedTypeName name="edu.kh.attendance.model.dao.AttendanceDAO"/>
+    <fullyQualifiedTypeName name="edu.kh.attendance.model.dao.AttendanceDAOImpl"/>
+    <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="edu.kh.attendance.model.dto.Attendance"/>
+    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.lang.ClassCastException"/>
+    <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+</qualifiedTypeNameHistroy>

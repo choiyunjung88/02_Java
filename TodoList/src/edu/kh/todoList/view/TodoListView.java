@@ -11,7 +11,7 @@ import edu.kh.todoList.model.service.TodoListService;
 import edu.kh.todoList.model.service.TodoListServiceImpl;
 
 // View : 보여지는 부분(내용 출력/ 키보드 입력) 역할
-public class TodoListView {
+public abstract class TodoListView {
 
 	// 필드
 	private BufferedReader br = null; // 키보드 입력 스트림 참조 변수
@@ -144,9 +144,7 @@ public class TodoListView {
 	 */
 	public void todoAdd() {
 		System.out.println("세부 내용 작성 (입력 종료 시 !wq 작성 후 엔터");
-	
-		StringBuilder
-	
+
 	}
 	
 	

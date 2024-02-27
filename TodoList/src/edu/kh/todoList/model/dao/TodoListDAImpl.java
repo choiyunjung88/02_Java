@@ -44,17 +44,7 @@ public class TodoListDAImpl implements TodoListDAO {
 				if(ois != null) ois.close();
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			
 			
 			

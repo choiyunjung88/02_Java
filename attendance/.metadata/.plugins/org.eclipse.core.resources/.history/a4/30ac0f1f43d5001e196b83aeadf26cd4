@@ -1,0 +1,13 @@
+package edu.kh.attendance.model.service;
+
+import edu.kh.attendance.model.dao.AttendanceDAO;
+import edu.kh.attendance.model.dao.AttendanceDAOImpl;
+
+public class AttendanceServiceImpl implements AttendanceService {
+
+	private AttendanceDAO dao = null;
+	
+	public AttendanceServiceImpl() {
+		dao = new AttendanceDAOImpl();
+	}
+}

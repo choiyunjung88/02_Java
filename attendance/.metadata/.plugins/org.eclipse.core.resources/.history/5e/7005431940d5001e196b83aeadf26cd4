@@ -1,0 +1,11 @@
+package edu.kh.attendance.run;
+
+public class AttendanceRun {
+
+
+
+	System.out.println("========프로그램 실행========");
+	public static void main(String[] args) {
+		
+	}
+}

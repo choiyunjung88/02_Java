@@ -1,0 +1,5 @@
+package edu.kh.attendance.model.service;
+
+public class AttendanceServiceimpl implements AttendanceService {
+
+}
