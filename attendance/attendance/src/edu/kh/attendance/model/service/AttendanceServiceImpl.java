@@ -30,6 +30,55 @@ public class AttendanceServiceImpl implements AttendanceService {
 		}
 		return count;
 	}
+
+	@Override
+	public void addAttendance() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatAttendance() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAttendance() {
+		boolean flag = false;
+		
+		for(Attendance att : attSet) {
+			if (att.getName().equals(attName)) {
+				attSet.remove(att);
+				flag = true;
+				break;
+			}
+		}
+		
+		if (flag) {
+			System.out.println("장난감이 삭제되었습니다.");
+		} else {
+			System.out.println("해당하는 이름의 장난감을 찾을 수 없습니다.");
+			}		
+	}
+
+	@Override
+	public void sortByAge() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sortByScore() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showAssignment() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
