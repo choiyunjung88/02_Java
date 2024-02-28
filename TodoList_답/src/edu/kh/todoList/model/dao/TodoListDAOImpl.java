@@ -140,7 +140,7 @@ public class TodoListDAOImpl implements TodoListDAO {
 	}
 	
 	
-	@Override
+	@Override 
 	public boolean todoComplete(int index) throws Exception{
 		
 		// 1. index 범위 초과 시 false 반환

@@ -9,11 +9,10 @@ public interface AttendanceService {
 
 	public abstract List<Attendance> attendanceFullView();
 	public abstract int assigncount();
-	public abstract void addAttendance();
-	public abstract void updatAttendance();
-	public abstract void deleteAttendance();
-	public abstract void sortByAge();
-	public abstract void sortByScore();
-	public abstract void showAssignment();
+	public abstract void sortByAge() throws Exception;
+	public abstract int showAssignment();
+	int addAttendance(String name, int age, char gender, int grade, char assignment) throws Exception;
+	boolean updatAttendance(String name, int age, char gender, int grade, char assignment) throws Exception;
+	void deleteAttendance(String name) throws Exception;
 
 }

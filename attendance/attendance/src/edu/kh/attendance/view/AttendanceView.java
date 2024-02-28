@@ -45,8 +45,7 @@ public class AttendanceView {
 				case 3 : updateAttendance();break;
 				case 4 : deleteAttendance();break;
 				case 5 : sortByAge();break;
-				case 6 : sortByScore();break;
-				case 7 : showAssignment(); break;
+				case 6 : showAssignment(); break;
 				case 0 : System.out.println("출석부를 닫습니다"); break;
 				default : System.out.println("메뉴에 있는 숫자만 입력해주세요");
 				}
@@ -70,8 +69,7 @@ public class AttendanceView {
 		System.out.println("3. 출석부에 학생 수정");
 		System.out.println("4. 출석부에 학생 삭제");
 		System.out.println("5. 나이순 정렬");
-		System.out.println("6. 성적순 정렬");
-		System.out.println("7. 과제 제출자");
+		System.out.println("6. 과제 제출자");
 		System.out.println("0. 출석부 프로그램 종료");
 		System.out.println("메뉴 입력 : ");
 		int input = Integer.parseInt(br.readLine());
@@ -81,50 +79,34 @@ public class AttendanceView {
 	
 	private void showAssignment() {
 		System.out.println("\n==============과제 제출자===============");
+		System.out.println("과제 제출자는 " + service.showAssignment()+ "명입니다.");
 	}
 
 
-	private void sortByScore() {
-		System.out.println("\n==============성적순 정렬===============");
-		List<Attendance> attByScore = new ArrayList<Attendance>(attSet);
-		attByScore.sort(Comparator.comparings(Attendance::get));
-		int index = 1;
-		for(Attendance att : attByScore) {
-			System.out.println(index+". "+att);
-			index++;
-		}
-	}
 
 
-	private void sortByAge() {
+	private void sortByAge() throws Exception {
 		System.out.println("\n==============나이순 정렬===============");
-		List<Attendance> attByAge = new ArrayList<Attendance>(attSet);
-		attByAge.sort(Comparator.comparing(Attendance::getAge));
-		int index = 1;
-		for(Attendance att : attByAge) {
-			System.out.println(index+". "+att);
-			index++;
-		}
+		service.sortByAge();
 	}
 
 
-	private void deleteAttendance() {
+	private void deleteAttendance() throws Exception {
 		System.out.println("\n==============출석부에 학생 삭제===============");
-		System.out.print("삭제할 장난감의 이름을 입력하세요 : ");
+		System.out.print("삭제할 학생의 이름을 입력하세요 : ");
 		String attName = sc.next();
-		
+		service.deleteAttendance(attName);
 
 	}
 
 
-	private void updateAttendance() {
+	private void updateAttendance() throws Exception {
 		System.out.println("\n==============출석부에 학생 수정===============");
 		System.out.println("수정할 학생의 이름을 입력하세요 : ");
 		String attName = sc.next();
 		
 		boolean flag = false;
-		for(Attendance att : attSet) {
-			if (att.getName().equals(attName)) {
+
 				System.out.print("나이 : ");
 				int age = sc.nextInt();
 				
@@ -136,25 +118,22 @@ public class AttendanceView {
 				
 				System.out.print("과제제출여부 : ");
 				char assignment = sc.next().charAt(0);
-				att.setAge(age);
-				att.setGender(gender);
-				att.setGrade(grade);
-				att.setAssignment(assignment);
-				flag = true;
-				break;
-			}
-		}
+
+				flag = service.updatAttendance(attName, age, gender, grade, assignment);
+			
+		
+		
 		if (flag) {
 			System.out.println("학생 정보가 수정되었습니다.");
 		}else {
-			System.out.println("해당하는 이름의 학생을 찾을 수 있습니다.");
+			System.out.println("해당하는 이름의 학생을 찾을 수 없습니다.");
 		}
 		
 		
 	}
 
 
-	private void addAttendance() {
+	private void addAttendance() throws Exception {
 		System.out.println("\n==============출석부에 학생 추가===============");
 		System.out.print("학생 이름 :");
 		String name = sc.next();
@@ -177,10 +156,12 @@ public class AttendanceView {
 		System.out.print("과제제출여부 : ");
 		char assignment = sc.next().charAt(0);
 		
-		Attendance newatt = new Attendance(name, age, gender, grade, assignment);
-		
-		attSet.add(newatt);
-		System.out.println("새로운 장난감이 추가되었습니다!");
+		int index = service.addAttendance(name, age, gender, grade, assignment);
+		if(index == -1) { // 실패
+			System.out.println("### 추가 실패 ###");
+			return;
+		}
+		System.out.println("새로운 학생이 추가되었습니다!");
 	}
 
 

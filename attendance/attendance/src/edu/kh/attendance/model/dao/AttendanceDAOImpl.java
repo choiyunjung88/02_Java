@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.kh.attendance.model.dto.Attendance;
@@ -52,5 +53,91 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 		// TODO Auto-generated method stub
 		return attendanceList;
 	}
+
+	@Override
+	public void saveFile() throws Exception {
+		try {
+			// FILE_PATH 경로에 있는 파일과 연결된 객체 출력 스트림 생성
+			oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH));
+			oos.writeObject(attendanceList); 
+			
+		} finally {
+			oos.close();
+		}
+	}
+	
+	@Override
+	public int assigncount() {
+
+		return 0;
+	}
+
+	@Override
+	public int addAttendance(Attendance a) throws Exception {
+		if( attendanceList.add(a) ) { // 추가성공
+					
+					// 파일 저장
+					saveFile();
+					
+					// 삽입된 index 반환
+					return attendanceList.size() -1;
+				}
+				
+				
+				return -1; // 추가 실패		
+	}
+
+	@Override
+	public boolean updatAttendance(Attendance a) throws Exception {
+
+		int count = 0;
+		for (Attendance att : attendanceList) {
+			
+			if(att.getName().equals(a.getName())) {
+				attendanceList.set(count, a);
+				saveFile();
+				return true;
+			}
+			count++;
+		}	
+		return false;
+	}
+
+	@Override
+	public Attendance deleteAttendance(String name) throws Exception {
+		for(Attendance att : attendanceList) {
+			if (att.getName().equals(name)) {
+				Attendance a = attendanceList.remove(attendanceList.indexOf(att));
+				saveFile();
+				return a;
+			}
+			}
+		return null;
+		
+		
+	}
+
+	@Override
+	public void sortByAge() throws Exception {
+		attendanceList.sort(Comparator.comparing(Attendance::getAge));
+		saveFile();
+		int index = 1;
+		for(Attendance att : attendanceList) {
+			System.out.printf(index++ + ". 이름 : %3s 나이 : %2d 성별 : %1c 성적 : %3d 과제제출여부 : %1c\n",att.getName(),att.getAge(),att.getGender(),att.getGrade(),att.getAssignment());
+			index++;
+		}
+	}
+
+
+	@Override
+	public int showAssignment() {
+		int count = 0;
+		for (Attendance a : attendanceList) {
+			if(a.getAssignment()==('O')) count++;
+		}
+		return count;	
+	}
+
+
 	
 }
